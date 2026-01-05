@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
@@ -34,7 +35,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         elevation: 0.0,
       ),
       body: Stack(
@@ -47,14 +48,20 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                 topRight: Radius.circular(30),
               ),
               child: CachedNetworkImage(
+                scale: 1.0,
                 imageUrl: widget.imageUrl,
                 fit: BoxFit.cover,
                 placeholder: (context, url) => Center(
-                  child: CircularProgressIndicator(
+                  child: SpinKitCircle(
+                    size: 50,
                     color: Colors.black,
                   ),
                 ),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+                errorWidget: (context, url, error) => Center(
+                    child: Icon(
+                  Icons.error_outline,
+                  color: Colors.red,
+                )),
               ),
             ),
           ),
